@@ -17,7 +17,19 @@ const Button =(props)=> {
 }
 
  
-  
+  const Statistics= (props) => {
+
+    const all = props.good + props.bad + props.neutral
+    return (
+      <p style={{fontSize:"1em"}}>Good {props.good} <br></br> Neutral {props.neutral}
+       <br></br>Bad {props.bad} <br></br>All {all}<br></br>
+       Average {(props.good - props.bad) / (all) } <br></br>
+       Positive {(props.good / all) * 100} %
+       
+       </p>
+    )
+  }
+
  
 
 
@@ -41,19 +53,9 @@ const App = () => {
     setBad(bad+1) 
   }
 
-  const StatDisplay = ({text,stat,fontSize}) => {
 
-    const all = good + bad + neutral
-    return (
-      <p style={{fontSize:"1em"}}>Good {good} <br></br> Neutral {neutral}
-       <br></br>Bad {bad} <br></br>All {all}<br></br>
-       Average {(good - bad) / (all) } <br></br>
-       Positive {(good / all) * 100} %
-       
-       </p>
-    )
-  }
 
+  
   return (
     <div>
       <Header text="give feedback" size="2em"/>
@@ -62,7 +64,7 @@ const App = () => {
       <Button text="neutral" onClick={handleNeutralClick}></Button>
       <Button text="bad" onClick={handleBadClick}></Button>
      <Header text="statistics" size="2em"/>
-     <StatDisplay />
+     <Statistics fontSize={"1em"} good={good} bad={bad} neutral={neutral}/>
     
 
 
