@@ -8,11 +8,14 @@ const App = () => {
 
   const addPerson = (event) => {
   event.preventDefault()
-  console.log('button clicked',event.target);  
-  
+  console.log('button clicked',event.target); 
+  const isIncluded = persons.some(person => person.name === newName)
+  if (isIncluded) {alert(`${newName} is already added to phonebook`)}
+   else {
   const personObject = {name : newName}
   setPersons(persons.concat(personObject))
-  setNewName('');
+  }
+setNewName('');
 
 }
 const handlePersonChange = (event) => {
@@ -20,6 +23,7 @@ const handlePersonChange = (event) => {
     setNewName(event.target.value)
     
   }
+
 
   return (
     <div>
@@ -33,7 +37,7 @@ const handlePersonChange = (event) => {
         </div>
       </form>
       <h2>Numbers</h2>
-      {persons.map(person =><div> {person.name} </div>)}
+      {persons.map((person,index) =><div key={index}> {person.name} </div>)}
     </div>
   )
 }
