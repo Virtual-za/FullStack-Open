@@ -5,6 +5,9 @@ import countryService from './Services/countries.js'
 import CountryList from './Components/CountryList.jsx'
 import CountryDisplay from './Components/CountryDisplay.jsx'
 
+const api_key = import.meta.env.VITE_SOME_KEY
+// variable api_key now has the value set in startup
+
 const App =()=> {
   const [newCountry,setNewCountry] = useState('');
   const [countries,setCountries] = useState([]);
