@@ -38,6 +38,10 @@ const person = persons.find(person => person.id ===id)
 response.json(person)
 })
 
+app.get('/info',(req,res) => {
+const reqTime = new Date()
+res.send(`<h1>Phonebook has info for ${persons.length} people</h1><p>${reqTime}</p>`)
+})
 
 
 const PORT = 3001
