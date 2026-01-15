@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
+const morgan = require('morgan')
 
-app.use(express.json())
 let persons = [
     { 
       "id": "1",
@@ -24,6 +24,16 @@ let persons = [
       "number": "39-23-6423122"
     }
 ]
+
+app.use(express.json())
+morgan.token('body',function(req,res) {return JSON.stringify(req.body)})
+
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
+
+
+
+
+
 
 app.get('/',(request,response) => {
     response.send('<h1>Hello World</h1>')
@@ -64,7 +74,7 @@ return String(maxId +1)
 app.post('/api/persons',(req,res) => {
     
     const body = req.body;
-    //person.id = generateId
+  
 
      if (!body.name) {
     return res.status(400).json({ 
@@ -81,7 +91,7 @@ const person = {
 
     persons = persons.concat(person)
 
-    console.log(person)
+   // console.log(person)
     res.json(person)
 
 })
