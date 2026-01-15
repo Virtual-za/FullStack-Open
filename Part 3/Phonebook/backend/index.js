@@ -39,14 +39,20 @@ const person = persons.find(person => person.id ===id)
 response.json(person)
  } else response.status(404).end()
 
-
-
 })
 
 app.get('/info',(req,res) => {
 const reqTime = new Date()
 res.send(`<h1>Phonebook has info for ${persons.length} people</h1><p>${reqTime}</p>`)
 })
+
+app.delete('/api/persons/:id',(req,res) => {
+    const id = req.params.id
+    const person = persons.filter(person => person.id !== id)
+    res.json(person)
+    res.status(204).end()
+})
+
 
 
 const PORT = 3001
