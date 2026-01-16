@@ -22,6 +22,7 @@ const App = () => {
   };
 
   useEffect(hook, []);
+//renamed again
 
   const addPerson = (event) => {
     event.preventDefault();
